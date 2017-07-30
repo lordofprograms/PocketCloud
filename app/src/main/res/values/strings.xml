@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PocketCloud</string>
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <string name="auth">Authentication</string>
+    <string name="reg">Registration</string>
+
+    <string name="auth_succeed">Authentication finished successfully</string>
+    <string name="auth_failed">Authentication failed</string>
+    <string name="reg_succeed">Registration finished successfully</string>
+    <string name="reg_failed">Registration failed</string>
+
+</resources>

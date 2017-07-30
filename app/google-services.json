@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "236473460007",
+    "firebase_url": "https://cloudpocket-8daba.firebaseio.com",
+    "project_id": "cloudpocket-8daba",
+    "storage_bucket": "cloudpocket-8daba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236473460007:android:e9c5b44395c8fc28",
+        "android_client_info": {
+          "package_name": "com.lordofprograms.pocketcloud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236473460007-fujjpmkljjohducvndr10fol7p6ogkpu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lordofprograms.pocketcloud",
+            "certificate_hash": "49b3580addbf5907e2b5d6551c0e8bd9d1004a71"
+          }
+        },
+        {
+          "client_id": "236473460007-vji5se4sf78t8a10eugdsajg3kpor8f8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJSsC6J0F-WKEoyOuLvsR0xZP5DBjdW1I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236473460007-vji5se4sf78t8a10eugdsajg3kpor8f8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
