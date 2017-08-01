@@ -46,11 +46,11 @@ class LoginActivity : MvpAppCompatActivity(), LoginView, View.OnClickListener {
         registration.setOnClickListener(this)
     }
 
-    override fun blockButtons(): Subscription {
+    override fun blockButtons(){
         authentication.isEnabled = false
         registration.isEnabled = false
 
-        return Observable.combineLatest(getTextWatcherObservable(email), getTextWatcherObservable(password),
+         Observable.combineLatest(getTextWatcherObservable(email), getTextWatcherObservable(password),
                 {s1, s2 ->
                     when{
                         s1.isEmpty() || s2.isEmpty() -> return@combineLatest false

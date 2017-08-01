@@ -12,12 +12,6 @@ import rx.subscriptions.CompositeSubscription
  */
 class LoginPresenter : MvpPresenter<LoginView>() {
 
-    val subscriptions = CompositeSubscription()
-
-    override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
-    }
-
     fun addFirebaseListener(): FirebaseAuth.AuthStateListener{
         return FirebaseAuth.AuthStateListener { firebaseAuth ->
             if (firebaseAuth.currentUser != null) {
@@ -36,11 +30,6 @@ class LoginPresenter : MvpPresenter<LoginView>() {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             activity.taskOperating(task, R.string.reg_succeed, R.string.reg_failed)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        subscriptions.clear()
     }
 
 }

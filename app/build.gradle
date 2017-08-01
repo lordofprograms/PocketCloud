@@ -28,26 +28,33 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    //Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     //Standard libraries
+    //Rx
+    //Firebase
+    //Moxy MVP
+    //MaterialDialog
+    //Picasso loading images
+    //Tests
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
-    //Rx
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
-    //Firebase
     compile 'com.google.firebase:firebase-auth:10.0.1'
     compile 'com.google.firebase:firebase-database:10.0.1'
     compile 'com.firebaseui:firebase-ui-database:1.1.1'
-    //Moxy MVP
+    compile 'com.google.firebase:firebase-storage:10.0.1'
     compile 'com.arello-mobile:moxy:1.5.2'
     compile 'com.arello-mobile:moxy-android:1.5.2'
     compile 'com.arello-mobile:moxy-app-compat:1.5.2'
-    kapt 'com.arello-mobile:moxy-compiler:1.5.2'
+    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
+    compile 'com.squareup.picasso:picasso:2.5.2'
     testCompile 'junit:junit:4.12'
+    kapt 'com.arello-mobile:moxy-compiler:1.5.2'
 }
-kapt{
+kapt {
     generateStubs = true
 }
 

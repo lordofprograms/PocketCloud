@@ -12,4 +12,12 @@
     <string name="reg_succeed">Registration finished successfully</string>
     <string name="reg_failed">Registration failed</string>
 
+    <string name="text_new">New</string>
+    <string name="text_photo">Photo</string>
+
+    <string name="choose_source">Choose image source</string>
+    <string name="empty_field">Fill the input field</string>
+    <string name="uploading_image">Uploading image</string>
+    <string name="please_wait">Please wait</string>
+
 </resources>

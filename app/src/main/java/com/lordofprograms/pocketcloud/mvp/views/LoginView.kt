@@ -12,7 +12,7 @@ import rx.Subscription
 interface LoginView : MvpView {
 
     fun setListeners()
-    fun blockButtons(): Subscription
+    fun blockButtons()
     fun goToTasks()
 
 }

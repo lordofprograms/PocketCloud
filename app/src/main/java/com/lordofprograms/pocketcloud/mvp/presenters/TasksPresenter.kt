@@ -8,6 +8,7 @@ import com.google.firebase.database.DatabaseReference
 import com.lordofprograms.pocketcloud.R
 import com.lordofprograms.pocketcloud.ui.activity.TasksActivity
 import com.lordofprograms.pocketcloud.mvp.views.TasksView
+import rx.subscriptions.CompositeSubscription
 
 /**
  * Created by Михаил on 29.07.2017.
@@ -15,14 +16,17 @@ import com.lordofprograms.pocketcloud.mvp.views.TasksView
 @InjectViewState
 class TasksPresenter : MvpPresenter<TasksView>(){
 
-
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.onTasksLoaded()
+//        viewState.updateIcon()
     }
 
     fun addNewTask(ref: DatabaseReference, user: FirebaseUser?, secondChild: String, valueText: String) {
-        ref.child(user?.uid).child(secondChild).push().setValue(valueText)
+        when{
+            valueText.trim().isNotEmpty() -> ref.child(user?.uid).child(secondChild).push().setValue(valueText)
+            else -> viewState.emptyField()
+        }
     }
 
     fun checkUser(user: FirebaseUser?){
@@ -50,9 +54,13 @@ class TasksPresenter : MvpPresenter<TasksView>(){
                     viewState.updateView()
                 }
 
-                viewHolder.itemView.setOnClickListener { viewState.goToDetails() }
+                viewHolder.itemView.setOnClickListener { viewState.goToImages(this, position, title) }
             }
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        CompositeSubscription().clear()
+    }
 }
