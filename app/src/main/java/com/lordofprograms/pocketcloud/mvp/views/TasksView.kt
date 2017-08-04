@@ -17,6 +17,8 @@ interface TasksView : MvpView {
     fun updateIcon()
     fun updateView()
     fun emptyField()
+    fun savedToDb()
     fun onTasksLoaded()
-    fun goToImages(adapter: FirebaseRecyclerAdapter<String, TasksActivity.TaskViewHolder>, position: Int, title: String)
+    fun goToImages(adapter: FirebaseRecyclerAdapter<String, TasksActivity.TaskViewHolder>, position: Int,title: String)
+    fun goToHistory()
 }

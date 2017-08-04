@@ -16,8 +16,10 @@
     <string name="text_photo">Photo</string>
 
     <string name="choose_source">Choose image source</string>
+    <string name ="empty_text">Nothing to show</string>
     <string name="empty_field">Fill the input field</string>
-    <string name="uploading_image">Uploading image</string>
-    <string name="please_wait">Please wait</string>
+    <string name="saved">Successfully saved to DB</string>
+
+    <string name="history">History</string>
 
 </resources>

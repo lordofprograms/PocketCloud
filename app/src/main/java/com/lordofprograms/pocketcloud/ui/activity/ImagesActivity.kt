@@ -13,13 +13,13 @@ import android.support.v4.app.ActivityCompat.requestPermissions
 import android.util.Log
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.lordofprograms.pocketcloud.R
 import com.lordofprograms.pocketcloud.mvp.presenters.ImagesPresenter
 import com.lordofprograms.pocketcloud.mvp.views.ImagesView
 import com.lordofprograms.pocketcloud.utils.Constants
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_images.*
 import java.io.File
 
@@ -32,6 +32,7 @@ class ImagesActivity : MvpAppCompatActivity(), ImagesView {
     private var reference = ""
     private var tempPhoto: File? = null
     private val storageReference: StorageReference = FirebaseStorage.getInstance().reference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +47,7 @@ class ImagesActivity : MvpAppCompatActivity(), ImagesView {
         val localFile: File = presenter.createTempImageFile(externalCacheDir)
         storageReference.child(Constants.IMAGES + reference).getFile(localFile)
                 .addOnSuccessListener {
-                    Picasso.with(this)
+                    Glide.with(this)
                             .load(Uri.fromFile(localFile))
                             .into(ivPicture)
                 }.addOnFailureListener { exception ->
@@ -106,7 +107,7 @@ class ImagesActivity : MvpAppCompatActivity(), ImagesView {
                 if (data != null && data.data != null) {
                     imageUri = presenter.getRealPathFromURI(this, data.data)
 
-                    Picasso.with(baseContext)
+                    Glide.with(baseContext)
                             .load(data.data)
                             .into(ivPicture)
                     presenter.uploadFileInFirebaseStorage(storageReference,reference,data.data)
@@ -114,7 +115,7 @@ class ImagesActivity : MvpAppCompatActivity(), ImagesView {
                 else if (true) {
                     imageUri = Uri.fromFile(tempPhoto).toString()
 
-                    Picasso.with(this)
+                    Glide.with(this)
                             .load(imageUri)
                             .into(ivPicture)
                     presenter.uploadFileInFirebaseStorage(storageReference,reference,Uri.fromFile(tempPhoto))

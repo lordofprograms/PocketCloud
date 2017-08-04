@@ -6,9 +6,13 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.lordofprograms.pocketcloud.R
+import com.lordofprograms.pocketcloud.db.DbService
+import com.lordofprograms.pocketcloud.db.models.Task
 import com.lordofprograms.pocketcloud.ui.activity.TasksActivity
 import com.lordofprograms.pocketcloud.mvp.views.TasksView
 import rx.subscriptions.CompositeSubscription
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by Михаил on 29.07.2017.
@@ -27,6 +31,18 @@ class TasksPresenter : MvpPresenter<TasksView>(){
             valueText.trim().isNotEmpty() -> ref.child(user?.uid).child(secondChild).push().setValue(valueText)
             else -> viewState.emptyField()
         }
+    }
+
+    fun addNewTaskToDb(dbService: DbService, task: String){
+        val model = Task()
+        model.task = task
+        model.time = createTime()
+        dbService.save(model, Task::class.java)
+                .subscribe{ viewState.savedToDb() }
+    }
+
+    fun createTime(): String?{
+        return SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
     }
 
     fun checkUser(user: FirebaseUser?){

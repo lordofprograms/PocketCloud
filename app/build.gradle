@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 25
@@ -24,35 +25,49 @@ android {
 }
 
 dependencies {
+
+    ext {
+        espresso = '2.2.2'
+        androidlibraries = '25.3.1'
+        constraint = '1.0.0-alpha8'
+        rxjava = '1.1.6'
+        rxandroid = '1.2.1'
+        firebase = '10.0.1'
+        firebaseui = '1.1.1'
+        moxy = '1.5.2'
+        glide = '3.7.0'
+        junit = '4.12'
+    }
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$espresso", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
     //Standard libraries
+    compile "com.android.support:appcompat-v7:$androidlibraries"
+    compile "com.android.support:design:$androidlibraries"
+    compile "com.android.support.constraint:constraint-layout:$constraint"
     //Rx
+    compile "io.reactivex:rxjava:$rxjava"
+    compile "io.reactivex:rxandroid:$rxandroid"
     //Firebase
+    compile "com.google.firebase:firebase-auth:$firebase"
+    compile "com.google.firebase:firebase-database:$firebase"
+    compile "com.google.firebase:firebase-storage:$firebase"
+    compile "com.firebaseui:firebase-ui-database:$firebaseui"
     //Moxy MVP
-    //MaterialDialog
-    //Picasso loading images
+    compile "com.arello-mobile:moxy:$moxy"
+    compile "com.arello-mobile:moxy-android:$moxy"
+    compile "com.arello-mobile:moxy-app-compat:$moxy"
+    kapt "com.arello-mobile:moxy-compiler:$moxy"
+    //Glide loading images
+    compile "com.github.bumptech.glide:glide:$glide"
     //Tests
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.1.6'
-    compile 'com.google.firebase:firebase-auth:10.0.1'
-    compile 'com.google.firebase:firebase-database:10.0.1'
-    compile 'com.firebaseui:firebase-ui-database:1.1.1'
-    compile 'com.google.firebase:firebase-storage:10.0.1'
-    compile 'com.arello-mobile:moxy:1.5.2'
-    compile 'com.arello-mobile:moxy-android:1.5.2'
-    compile 'com.arello-mobile:moxy-app-compat:1.5.2'
-    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    testCompile 'junit:junit:4.12'
-    kapt 'com.arello-mobile:moxy-compiler:1.5.2'
+    testCompile "junit:junit:$junit"
+
 }
 kapt {
     generateStubs = true

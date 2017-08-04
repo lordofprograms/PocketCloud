@@ -1,4 +1,5 @@
 @file:JvmName("UiUtils")
+
 package com.lordofprograms.pocketcloud.utils
 
 import android.content.Context
@@ -7,15 +8,21 @@ import android.text.Editable
 import android.text.TextWatcher
 import rx.subjects.PublishSubject
 import android.widget.EditText
-import android.support.annotation.NonNull
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import rx.Observable
 
 
 /**
  * Created by Михаил on 28.07.2017.
  */
-fun Context.toast(wordRes: Int){
+fun Context.toast(wordRes: Int) {
     Toast.makeText(this, getString(wordRes), Toast.LENGTH_SHORT).show()
+}
+
+fun ViewGroup.inflate(resId: Int): View {
+    return LayoutInflater.from(context).inflate(resId, this, false)
 }
 
 fun getTextWatcherObservable(editText: EditText): Observable<String> {

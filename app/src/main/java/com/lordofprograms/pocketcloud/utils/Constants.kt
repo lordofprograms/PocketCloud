@@ -9,4 +9,5 @@ object Constants {
     val REFERENCE = "Reference"
     val REQUEST_CAMERA = 911
     val REQUEST_TAKE_PHOTO = 912
+    val TASK_MODEL = "Task"
 }
