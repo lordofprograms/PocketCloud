@@ -19,19 +19,24 @@ import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import rx.subscriptions.CompositeSubscription
 
 class LoginActivity : MvpAppCompatActivity(), LoginView, View.OnClickListener {
 
     @InjectPresenter
     lateinit var presenter: LoginPresenter
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    val subs = CompositeSubscription()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        supportActionBar?.hide()
+
         presenter.addFirebaseListener()
         setListeners()
-        blockButtons()
+        subs.add(blockButtons())
     }
 
     override fun onClick(view: View) {
@@ -46,11 +51,11 @@ class LoginActivity : MvpAppCompatActivity(), LoginView, View.OnClickListener {
         registration.setOnClickListener(this)
     }
 
-    override fun blockButtons(){
+    override fun blockButtons(): Subscription{
         authentication.isEnabled = false
         registration.isEnabled = false
 
-         Observable.combineLatest(getTextWatcherObservable(email), getTextWatcherObservable(password),
+        return Observable.combineLatest(getTextWatcherObservable(email), getTextWatcherObservable(password),
                 {s1, s2 ->
                     when{
                         s1.isEmpty() || s2.isEmpty() -> return@combineLatest false
@@ -77,6 +82,11 @@ class LoginActivity : MvpAppCompatActivity(), LoginView, View.OnClickListener {
 
     override fun goToTasks(){
         finish()
-        startActivity(Intent(this, TasksActivity::class.java))}
+        startActivity(Intent(this, TasksActivity::class.java))
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        subs.clear()
+    }
 }

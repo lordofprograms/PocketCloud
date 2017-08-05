@@ -11,7 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        android:layout_margin="15dp"/>
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_above="@dimen/dp15" />
 
     <ProgressBar
         android:id = "@+id/pb"
@@ -25,8 +28,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:id="@+id/etTask"
+        android:inputType="text"
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/addTask" />
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/addTask"
+        android:layout_toStartOf="@+id/addTask"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -34,6 +40,7 @@
         android:layout_alignBaseline="@+id/etTask"
         android:layout_alignBottom="@+id/etTask"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:id="@+id/addTask"
         android:text="@string/text_new"/>
 

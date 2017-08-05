@@ -11,6 +11,7 @@ import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat.checkSelfPermission
 import android.support.v4.app.ActivityCompat.requestPermissions
 import android.util.Log
+import android.view.MenuItem
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.bumptech.glide.Glide
@@ -37,6 +38,9 @@ class ImagesActivity : MvpAppCompatActivity(), ImagesView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_images)
+
+        supportActionBar?.title = getString(R.string.images)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         reference = intent.getStringExtra(Constants.REFERENCE)
         addPicture.setOnClickListener{addPhoto()}
@@ -98,6 +102,13 @@ class ImagesActivity : MvpAppCompatActivity(), ImagesView {
             startActivityForResult(chooserIntent, Constants.REQUEST_TAKE_PHOTO)
 
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home -> super.onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

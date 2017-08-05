@@ -16,10 +16,15 @@
     <string name="text_photo">Photo</string>
 
     <string name="choose_source">Choose image source</string>
-    <string name ="empty_text">Nothing to show</string>
+    <string name="delete">Delete</string>
+    <string name="add_picture">Add picture</string>
+    <string name="empty_text">Nothing to show</string>
     <string name="empty_field">Fill the input field</string>
     <string name="saved">Successfully saved to DB</string>
 
+    <string name="tasks">All tasks</string>
+    <string name="images">Choose image</string>
     <string name="history">History</string>
+
 
 </resources>

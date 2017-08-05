@@ -5,7 +5,7 @@
     android:layout_height="50dp">
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dp0"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:id="@+id/tvTask"/>
@@ -13,6 +13,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="DEL"
+        android:text="@string/delete"
         android:id="@+id/delete"/>
 </LinearLayout>

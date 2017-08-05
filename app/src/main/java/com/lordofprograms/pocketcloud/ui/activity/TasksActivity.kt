@@ -42,6 +42,9 @@ class TasksActivity : MvpAppCompatActivity(), TasksView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tasks)
         Realm.init(this)
+
+        supportActionBar?.title = getString(R.string.tasks)
+
         presenter.checkUser(user)
 
         addTask.setOnClickListener {

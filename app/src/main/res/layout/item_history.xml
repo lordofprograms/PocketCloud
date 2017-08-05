@@ -8,8 +8,7 @@
         android:id="@+id/taskTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="15:15"
-        android:layout_margin="15dp"/>
+        android:layout_margin="@dimen/dp15"/>
 
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Medium"
@@ -17,10 +16,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/taskTime"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
         android:layout_toRightOf="@+id/taskTime"
-        android:text="Task name" />
+        android:layout_toEndOf="@+id/taskTime"/>
 
 
 </RelativeLayout>

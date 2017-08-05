@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dp15">15dp</dimen>
+    <dimen name="dp50">50dp</dimen>
+    <dimen name="dp0">0dp</dimen>
+    <dimen name="img_size">400dp</dimen>
+    <dimen name="et_width">250dp</dimen>
+    <dimen name="email_margin">145dp</dimen>
+    <dimen name="et_text_size">20sp</dimen>
+</resources>

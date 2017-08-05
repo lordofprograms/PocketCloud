@@ -1,6 +1,7 @@
 package com.lordofprograms.pocketcloud.ui.activity
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
 
@@ -24,6 +25,10 @@ class HistoryActivity : MvpAppCompatActivity(), HistoryView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
         Realm.init(this)
+
+        supportActionBar?.title = getString(R.string.history)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         subs.add(loadRecyclerView())
     }
 
@@ -35,7 +40,6 @@ class HistoryActivity : MvpAppCompatActivity(), HistoryView {
                .doOnCompleted{showEmpty()}
                 .subscribe{ models ->
                     historyList += models
-                    //  Collections.reverse(historyList)
 
                     adapter.setList(historyList)
                     historyRv.adapter = adapter
@@ -57,6 +61,13 @@ class HistoryActivity : MvpAppCompatActivity(), HistoryView {
     override fun hideEmptyText() {
         historyRv.visibility = View.VISIBLE
         emptyText.visibility = View.GONE
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home -> super.onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {

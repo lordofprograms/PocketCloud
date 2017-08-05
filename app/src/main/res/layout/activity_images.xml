@@ -8,12 +8,12 @@
     <ImageView
         android:id="@+id/ivPicture"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="@dimen/img_size"
         android:scaleType="centerCrop" />
 
     <Button
         android:id="@+id/addPicture"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Добавить изображение" />
+        android:layout_height="@dimen/dp50"
+        android:text="@string/add_picture" />
 </LinearLayout>
