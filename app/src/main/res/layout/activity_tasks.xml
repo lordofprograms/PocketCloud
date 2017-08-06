@@ -14,7 +14,7 @@
         android:layout_marginLeft="@dimen/dp15"
         android:layout_marginRight="@dimen/dp15"
         android:layout_marginTop="@dimen/dp15"
-        android:layout_above="@dimen/dp15" />
+        android:layout_above = "@+id/addTask"/>
 
     <ProgressBar
         android:id = "@+id/pb"

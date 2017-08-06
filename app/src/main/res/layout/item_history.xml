@@ -21,5 +21,14 @@
         android:layout_toRightOf="@+id/taskTime"
         android:layout_toEndOf="@+id/taskTime"/>
 
+    <ImageView
+        android:id="@+id/delete"
+        android:src="@drawable/ic_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/taskName"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>

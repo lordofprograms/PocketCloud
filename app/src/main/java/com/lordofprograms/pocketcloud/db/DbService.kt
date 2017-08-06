@@ -1,5 +1,6 @@
 package com.lordofprograms.pocketcloud.db
 
+import android.util.Log
 import com.lordofprograms.pocketcloud.db.migration.RealmMigration
 import com.lordofprograms.pocketcloud.db.models.Task
 import io.realm.Realm
@@ -8,6 +9,7 @@ import io.realm.RealmObject
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+
 
 /**
  * Created by Михаил on 04.08.2017.
@@ -19,7 +21,8 @@ class DbService {
             .migration(RealmMigration())
             .build()
 
-    fun <T : RealmObject> save(`object`: T, clazz: Class<T>): Observable<T> {
+
+    fun <T : RealmObject> save(`object`: T, clazz: Class<T>): Observable<RealmObject> {
         val realm = Realm.getInstance(config)
 
         var id: Long
@@ -36,7 +39,7 @@ class DbService {
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap { t ->
-                    Observable.just(t as T)
+                    Observable.just(t)
                             .doOnSubscribe(realm::beginTransaction)
                             .doOnUnsubscribe {
                                 realm.commitTransaction()
@@ -62,5 +65,36 @@ class DbService {
                 }
     }
 
+    fun <T : RealmObject> delete(clazz: Class<T>, id: Int): Observable<RealmObject> {
+        val realm = Realm.getInstance(config)
+
+        return realm.where(clazz).equalTo("id", id).findAllAsync().asObservable()
+                /*.subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())*/
+                .flatMap { tasks -> Observable.from<RealmObject>(tasks) }
+                .doOnError { error -> Log.e("Delete", error.message) }
+                .doOnSubscribe{realm.beginTransaction()}
+                .doOnUnsubscribe {
+                    realm.commitTransaction()
+                    realm.close()
+                }
+    }
+
+    fun <T : RealmObject> deleteAll(clazz: Class<T>): Observable<Boolean> {
+        val realm = Realm.getInstance(config)
+
+        return Observable.just(clazz)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap { t ->
+                    Observable.just(t)
+                            .doOnSubscribe { realm.beginTransaction() }
+                            .doOnUnsubscribe {
+                                realm.commitTransaction()
+                                realm.close()
+                            }
+                            .map { type -> realm.where(type).findAll().deleteAllFromRealm() }
+                }
+    }
 
 }
